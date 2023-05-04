@@ -13,7 +13,6 @@ jobs:
          - os: windows-2022
          - os: ubuntu-20.04
          # - os: windows-2019 Cannot Target windows-2019 because the .NET 6 SDK won't receive security patches for this image
-         - os: ubuntu-18.04
     steps:
     - name: Set git to use LF
       run: |
@@ -21,7 +20,7 @@ jobs:
         git config --global core.eol lf
 
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         submodules: recursive
     
