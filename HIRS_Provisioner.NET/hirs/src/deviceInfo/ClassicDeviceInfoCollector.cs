@@ -207,7 +207,6 @@ namespace hirs {
                 if (!string.IsNullOrWhiteSpace(domainName)) {
                     nw.Hostname = nw.Hostname + "." + domainName;
                 }
-            }
             } else if (nw.HasIpAddress) {
                 nw.Hostname = Dns.GetHostEntry(nw.IpAddress).HostName;
             } else {
