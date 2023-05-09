@@ -199,7 +199,16 @@ namespace hirs {
                     }
                 }
             }
-            if (nw.HasIpAddress) {
+
+            // Search for hostname
+	    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+                nw.Hostname = Dns.GetHostName().ToLower();
+                string domainName = IPGlobalProperties.GetIPGlobalProperties().DomainName;
+                if (!string.IsNullOrWhiteSpace(domainName)) {
+                    nw.Hostname = nw.Hostname + "." + domainName;
+                }
+            }
+            } else if (nw.HasIpAddress) {
                 nw.Hostname = Dns.GetHostEntry(nw.IpAddress).HostName;
             } else {
                 nw.Hostname = Dns.GetHostName();
